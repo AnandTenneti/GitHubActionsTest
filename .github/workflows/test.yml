@@ -1,8 +1,13 @@
 name: "Github Actions Test"
 
 on:
-  push:
-   branches: [ main ]
+    workflow_dispatch:
+    inputs:
+      text:
+        description: 'Please enter the word to be printed'
+        default: 'Hello'
+        required: true
+        type: string
 
 jobs:
   test:
