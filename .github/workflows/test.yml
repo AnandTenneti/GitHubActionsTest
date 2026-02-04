@@ -1,11 +1,11 @@
 name: "Github Actions Test"
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
     inputs:
       text:
-        description: 'Please enter the word to be printed'
-        default: 'Hello'
+        description: "Please enter the word to be printed"
+        default: "Hello"
         required: true
         type: string
 
