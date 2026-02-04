@@ -13,8 +13,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: "Get the repository name"
-        run: echo "Repo: ${{ github.repository }}"
-
       - name: "Get the github actor"
         run: echo "Triggered by: ${{ github.actor }}"
+
