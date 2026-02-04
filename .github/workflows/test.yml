@@ -1,18 +1,43 @@
-name: "Github Actions Test"
+name: Sample GitHub Actions Commands
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
-    inputs:
-      text:
-        description: "Please enter the word to be printed"
-        default: "Hello"
-        required: true
-        type: string
 
 jobs:
-  test:
+  demo:
     runs-on: ubuntu-latest
-    steps:
-      - name: "Get the github actor"
-        run: echo "Triggered by: ${{ github.actor }}"
 
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Print GitHub context values
+      - name: Print GitHub context
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "SHA: ${{ github.sha }}"
+
+      # Run shell commands
+      - name: Run basic shell commands
+        run: |
+          pwd
+          ls -la
+          echo "Hello from GitHub Actions"
+
+      # Set and use environment variables
+      - name: Set environment variable
+        run: echo "APP_ENV=QA" >> $GITHUB_ENV
+
+      - name: Use environment variable
+        run: echo "Environment is $APP_ENV"
+
+      # Conditional step
+      - name: Run only on main branch
+        if: github.ref == 'refs/heads/main'
+        run: echo "This runs only on main branch"
